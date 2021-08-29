@@ -1,3 +1,9 @@
+#This script assumes these environment variables are set
+#$env:ProfiseeSqlServer="sqlServerAddress";
+#$env:ProfiseeSqlUserName="sqlUserNameToDeployDatabase";
+#$env:ProfiseeSqlPassword="mySqlPassword";
+#$env:ProfiseeAdminAccount='someone@somewhere.com';
+#$env:ProfiseeExternalDNSUrl = "https://profisee.somewhere.com"
 param(
 [Parameter(Mandatory=$true)]
 [string]$basePath,
