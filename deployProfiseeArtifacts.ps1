@@ -1,5 +1,6 @@
 #This script assumes these environment variables are set
 #$env:ProfiseeSqlServer="sqlServerAddress";
+#$env:ProfiseeSqlDatabase="Profisee"
 #$env:ProfiseeSqlUserName="sqlUserNameToDeployDatabase";
 #$env:ProfiseeSqlPassword="mySqlPassword";
 #$env:ProfiseeAdminAccount='someone@somewhere.com';
@@ -33,7 +34,7 @@ Get-ChildItem $basePath\import;
 Expand-Archive $basePath\Tools\Profisee.Platform.Utilities.Internal.EncryptDecrypt.zip -DestinationPath $basePath\Tools;
 Get-ChildItem $basePath\Tools;
 Write-Output "get encrypted clientid from database";
-$connectionString="Provider=SQLOLEDB;Server="+$env:ProfiseeSqlServer+";Database=Profisee;User Id="+$env:ProfiseeSqlUserName+";Password="+$env:ProfiseeSqlPassword;
+$connectionString="Provider=SQLOLEDB;Server="+$env:ProfiseeSqlServer+";Database="+$env:ProfiseeSqlDatabase+";User Id="+$env:ProfiseeSqlUserName+";Password="+$env:ProfiseeSqlPassword;
 $sql="SELECT ISNULL(ClientID,'') FROM [meta].[tUser] WHERE NAME LIKE '$env:ProfiseeAdminAccount'";
 $connection = New-Object System.Data.OleDb.OleDbConnection $connectionString;
 $command = New-Object System.Data.OleDb.OleDbCommand $sql,$connection;
