@@ -5,6 +5,7 @@
 #$env:ProfiseeSqlPassword="mySqlPassword";
 #$env:ProfiseeAdminAccount='someone@somewhere.com';
 #$env:ProfiseeExternalDNSUrl = "https://profisee.somewhere.com"
+#$env:ProfiseeExternalDNSUrl = "Profisee"
 param(
 [Parameter(Mandatory=$true)]
 [string]$basePath,
@@ -53,6 +54,10 @@ Write-Output "get unencrypted clientid from out.txt";
 $clientid = [IO.File]::ReadAllText("$basePath\Tools\out.txt");
 Write-Output "clientid=$clientid";
 $url = $env:ProfiseeExternalDNSUrl + "/profisee/api/";
+if($env:ProfiseeWebAppName)
+{
+    $url = $env:ProfiseeExternalDNSUrl + "/" + $env:ProfiseeWebAppName + "/api/";
+}
 Write-Output "url=$url";
 Write-Output "cluexe=$cluexe";
 $clientidAndUrl = "/ClientID:"+$clientid+" /URL:"+$url;
